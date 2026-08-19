@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; }
+body { overflow-x: hidden; background: radial-gradient(ellipse at top, #101a42 0%, #030712 42%, #020617 100%); }
+::selection { background: #7c3aed; color: white; }
+.grid-bg { background-image: linear-gradient(rgba(148,163,184,.075) 1px,transparent 1px),linear-gradient(90deg,rgba(148,163,184,.075) 1px,transparent 1px); background-size: 54px 54px; mask-image: linear-gradient(to bottom,black,transparent); }
+.glass { @apply border border-white/[.14] bg-white/[0.07] backdrop-blur-xl shadow-[0_20px_70px_rgba(0,0,0,.26)]; }
+.gradient-text { @apply bg-gradient-to-r from-violet-300 via-cyan-200 to-blue-300 bg-clip-text text-transparent; }
+.section { @apply mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-32; }
+.section-title { @apply text-4xl font-semibold tracking-tight text-white sm:text-5xl; }
+.eyebrow { @apply mb-4 text-xs font-bold uppercase tracking-[.22em] text-cyan-200; }

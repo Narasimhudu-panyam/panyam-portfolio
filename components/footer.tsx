@@ -1,0 +1,3 @@
+'use client';
+import { ArrowUp, Github, Linkedin, Mail } from 'lucide-react';
+export function Footer() { return <footer className="border-t border-white/10"><div className="section flex flex-col gap-8 py-10 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between"><p>© {new Date().getFullYear()} Panyam Lakshmi Narasimhudu. Crafted with intent.</p><div className="flex gap-4"><a aria-label="GitHub" href="https://github.com/Narasimhudu-panyam"><Github size={18} /></a><a aria-label="LinkedIn" href="https://www.linkedin.com/in/panyam-lakshmi-narasimhudu"><Linkedin size={18} /></a><a aria-label="Email" href="mailto:hello@narasimhudu.dev"><Mail size={18} /></a><a aria-label="Back to top" href="#home"><ArrowUp size={18} /></a></div></div></footer>; }

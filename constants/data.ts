@@ -20,7 +20,7 @@ export interface Project {
   features: string[];
   architecture?: string[];
   stack: string[];
-  githubUrl?: string;
+  githubUrl: string;
   liveUrl?: string;
 }
 
@@ -40,6 +40,7 @@ export const projects: Project[] = [
       'Cloud-backed trip saving and management'
     ],
     stack: ['React', 'FastAPI', 'Python', 'Gemini AI', 'MongoDB', 'Google Maps APIs', 'OpenWeather API'],
+    githubUrl: 'https://github.com/Narasimhudu-panyam/AI-Smart-Travel-Planner',
     liveUrl: 'https://ai-smart-travel-planner-five.vercel.app/'
   },
   {
@@ -56,6 +57,7 @@ export const projects: Project[] = [
       'Fully responsive across desktop, tablet, and mobile'
     ],
     stack: ['Next.js', 'React', 'Tailwind CSS', 'JavaScript'],
+    githubUrl: 'https://github.com/Narasimhudu-panyam/netflix-clone',
     liveUrl: 'https://netflix-clone-brown-chi.vercel.app/'
   },
   {
@@ -85,7 +87,8 @@ export const projects: Project[] = [
       'Row Level Security (RLS)',
       'Secure Storage'
     ],
-    stack: ['Flutter', 'Dart', 'Supabase', 'PostgreSQL', 'SQLite', 'Realtime', 'Authentication', 'Secure Storage']
+    stack: ['Flutter', 'Dart', 'Supabase', 'PostgreSQL', 'SQLite', 'Realtime', 'Authentication', 'Secure Storage'],
+    githubUrl: 'https://github.com/Narasimhudu-panyam/flutter-supabase-todo-management'
   },
   {
     name: 'VSign – Vision-Based Sign Language Subtitler',
@@ -100,7 +103,8 @@ export const projects: Project[] = [
       'Low-latency (200-300 ms) subtitle generation',
       'Gesture stability logic for enhanced accuracy'
     ],
-    stack: ['Python', 'TensorFlow', 'MediaPipe', 'OpenCV', 'NumPy', 'Machine Learning']
+    stack: ['Python', 'TensorFlow', 'MediaPipe', 'OpenCV', 'NumPy', 'Machine Learning'],
+    githubUrl: 'https://github.com/Narasimhudu-panyam/vsign-sign-language-recognition'
   }
 ];
 

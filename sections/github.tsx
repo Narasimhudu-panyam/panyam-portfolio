@@ -1,7 +1,110 @@
 'use client';
+
 import { useEffect, useState } from 'react';
-import { Github, GitFork, Star, Users } from 'lucide-react';
+import { Github, GitFork, Star } from 'lucide-react';
 import { Reveal } from '@/components/motion';
-type Repo = { id: number; name: string; description: string | null; language: string | null; stargazers_count: number; forks_count: number; html_url: string };
-type Profile = { public_repos: number; followers: number; following: number };
-export function GitHub() { const [data, setData] = useState<{profile: Profile | null; repos: Repo[]}>({ profile: null, repos: [] }); useEffect(() => { fetch('/api/github').then(r => r.json()).then(setData).catch(() => undefined); }, []); const stats = data.profile ? [[data.profile.public_repos, 'Repositories'], [data.profile.followers, 'Followers'], [data.profile.following, 'Following']] : [['—', 'Repositories'], ['—', 'Followers'], ['—', 'Following']]; return <section className="section"><Reveal><div className="glass overflow-hidden rounded-3xl p-7 sm:p-10"><div className="flex flex-col justify-between gap-8 md:flex-row"><div><p className="eyebrow">06 — Open source</p><h2 className="section-title text-3xl sm:text-4xl">Building in public,<br/><span className="gradient-text">one commit at a time.</span></h2><a className="mt-6 inline-flex items-center gap-2 rounded-xl border border-white/15 px-4 py-2.5 text-sm hover:bg-white/10" href="https://github.com/Narasimhudu-panyam"><Github size={17}/>Follow on GitHub</a></div><div className="grid grid-cols-3 gap-7 self-end">{stats.map(([n, l]) => <div key={l as string}><p className="text-2xl font-semibold">{n}</p><p className="mt-1 text-xs text-slate-500">{l}</p></div>)}</div></div><div className="mt-10 grid gap-3 md:grid-cols-3">{data.repos.slice(0, 3).map(repo => <a key={repo.id} href={repo.html_url} className="rounded-xl border border-white/10 bg-black/10 p-4 transition hover:border-cyan-300/30"><p className="truncate text-sm font-medium text-white">{repo.name}</p><p className="mt-2 h-10 text-xs leading-5 text-slate-500">{repo.description || 'A project from my GitHub workspace.'}</p><div className="mt-3 flex gap-3 text-xs text-slate-400"><span>{repo.language || 'Code'}</span><span><Star className="mr-1 inline" size={12}/>{repo.stargazers_count}</span><span><GitFork className="mr-1 inline" size={12}/>{repo.forks_count}</span></div></a>)}</div></div></Reveal></section>; }
+
+type Repo = {
+  id: number;
+  name: string;
+  description: string | null;
+  language: string | null;
+  stargazers_count: number;
+  forks_count: number;
+  html_url: string;
+};
+
+type Profile = {
+  public_repos: number;
+  followers: number;
+  following: number;
+};
+
+export function GitHub() {
+  const [data, setData] = useState<{ profile: Profile; repos: Repo[] }>({
+    profile: { public_repos: 7, followers: 0, following: 0 },
+    repos: [],
+  });
+
+  useEffect(() => {
+    fetch('/api/github')
+      .then((r) => r.json())
+      .then((res) => {
+        if (res?.profile) {
+          setData(res);
+        }
+      })
+      .catch(() => undefined);
+  }, []);
+
+  const stats = [
+    [data.profile.public_repos, 'Repositories'],
+    [data.profile.followers, 'Followers'],
+    [data.profile.following, 'Following'],
+  ];
+
+  return (
+    <section className="section">
+      <Reveal>
+        <div className="glass overflow-hidden rounded-3xl p-7 sm:p-10">
+          <div className="flex flex-col justify-between gap-8 md:flex-row">
+            <div>
+              <p className="eyebrow">06 — Open source</p>
+              <h2 className="section-title text-3xl sm:text-4xl">
+                Building in public,<br />
+                <span className="gradient-text">one commit at a time.</span>
+              </h2>
+              <a
+                className="mt-6 inline-flex items-center gap-2 rounded-xl border border-white/15 px-4 py-2.5 text-sm hover:bg-white/10"
+                href="https://github.com/Narasimhudu-panyam"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Github size={17} /> Follow on GitHub
+              </a>
+            </div>
+
+            <div className="grid grid-cols-3 gap-7 self-end">
+              {stats.map(([n, l]) => (
+                <div key={l as string}>
+                  <p className="text-2xl font-semibold text-white">{n}</p>
+                  <p className="mt-1 text-xs text-slate-400">{l}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {data.repos.length > 0 && (
+            <div className="mt-10 grid gap-4 md:grid-cols-3">
+              {data.repos.slice(0, 3).map((repo) => (
+                <a
+                  key={repo.id}
+                  href={repo.html_url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-xl border border-white/10 bg-black/10 p-4 transition hover:border-cyan-300/30"
+                >
+                  <p className="truncate text-sm font-medium text-white">{repo.name}</p>
+                  <p className="mt-2 h-10 text-xs leading-5 text-slate-400">
+                    {repo.description || 'Open source project repository.'}
+                  </p>
+                  <div className="mt-3 flex gap-3 text-xs text-slate-400">
+                    <span>{repo.language || 'Code'}</span>
+                    <span>
+                      <Star className="mr-1 inline" size={12} />
+                      {repo.stargazers_count}
+                    </span>
+                    <span>
+                      <GitFork className="mr-1 inline" size={12} />
+                      {repo.forks_count}
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      </Reveal>
+    </section>
+  );
+}

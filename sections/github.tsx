@@ -82,20 +82,27 @@ export function GitHub() {
                   href={repo.html_url}
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded-xl border border-white/10 bg-black/10 p-4 transition hover:border-cyan-300/30"
+                  className="group flex flex-col justify-between rounded-xl border border-white/10 bg-black/20 p-5 transition hover:border-cyan-300/40 hover:bg-white/[0.03]"
                 >
-                  <p className="truncate text-sm font-medium text-white">{repo.name}</p>
-                  <p className="mt-2 h-10 text-xs leading-5 text-slate-400">
-                    {repo.description || 'Open source project repository.'}
-                  </p>
-                  <div className="mt-3 flex gap-3 text-xs text-slate-400">
-                    <span>{repo.language || 'Code'}</span>
-                    <span>
-                      <Star className="mr-1 inline" size={12} />
+                  <div>
+                    <p className="truncate text-sm font-semibold text-white transition group-hover:text-cyan-200">
+                      {repo.name}
+                    </p>
+                    <p className="mt-2.5 text-xs leading-relaxed text-slate-400 line-clamp-3 min-h-[3.75rem]">
+                      {repo.description || 'Open source project repository.'}
+                    </p>
+                  </div>
+                  <div className="mt-4 flex items-center gap-4 border-t border-white/5 pt-3 text-xs text-slate-400">
+                    <span className="flex items-center gap-1.5 font-medium text-slate-300">
+                      <span className="h-2 w-2 rounded-full bg-cyan-400" />
+                      {repo.language || 'Code'}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Star size={13} className="text-amber-400" />
                       {repo.stargazers_count}
                     </span>
-                    <span>
-                      <GitFork className="mr-1 inline" size={12} />
+                    <span className="flex items-center gap-1">
+                      <GitFork size={13} className="text-slate-400" />
                       {repo.forks_count}
                     </span>
                   </div>

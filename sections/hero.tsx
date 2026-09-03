@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ArrowDownRight, Download, Sparkles } from 'lucide-react';
+import { ArrowDownRight, Download } from 'lucide-react';
 
 export function Hero() {
   return (
@@ -72,10 +72,6 @@ export function Hero() {
             </div>
           </motion.div>
         </div>
-      </div>
-
-      <div className="absolute bottom-9 right-6 hidden items-center gap-2 text-xs text-slate-400 md:flex">
-        <Sparkles size={13} /> Scroll to discover
       </div>
     </section>
   );

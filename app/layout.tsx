@@ -1,4 +1,7 @@
 import type { Metadata } from 'next';
+// The stylesheet is processed by Next.js even when TypeScript cannot resolve
+// its side-effect import in the editor.
+// @ts-expect-error Next.js resolves global CSS imports at build time.
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -60,11 +63,8 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: [
-      { url: '/favicon.ico' },
-      { url: '/favicon.png', type: 'image/png' },
-    ],
-    shortcut: '/favicon.ico',
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
     apple: '/favicon.png',
   },
 };

@@ -3,10 +3,10 @@ import { Brain, Award, Code2, Database, Layers, Smartphone, Wrench } from 'lucid
 export const navItems = ['About', 'Skills', 'Projects', 'Certifications', 'Experience', 'Education', 'Contact'];
 
 export const skills = [
-  { icon: Code2, label: 'Frontend', items: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Next.js', 'Tailwind CSS', 'Bootstrap'] },
+  { icon: Code2, label: 'Frontend', items: ['HTML5', 'CSS3', 'JavaScript', 'TypeScript', 'React', 'Next.js', 'Vite', 'Tailwind CSS', 'Bootstrap'] },
   { icon: Layers, label: 'Backend', items: ['Node.js', 'Express', 'Python', 'FastAPI', 'REST APIs'] },
-  { icon: Database, label: 'Database', items: ['MongoDB', 'MySQL', 'Supabase', 'PostgreSQL', 'SQLite', 'Firebase'] },
-  { icon: Brain, label: 'AI Technologies', items: ['TensorFlow', 'MediaPipe', 'OpenCV', 'NumPy', 'Gemini AI', 'Google Maps API'] },
+  { icon: Database, label: 'Database', items: ['MongoDB', 'MySQL', 'Supabase', 'PostgreSQL', 'SQLite', 'ChromaDB', 'Firebase'] },
+  { icon: Brain, label: 'AI Technologies', items: ['RAG', 'ChromaDB', 'Ollama', 'Sentence Transformers', 'TensorFlow', 'MediaPipe', 'OpenCV', 'NumPy', 'Gemini AI'] },
   { icon: Smartphone, label: 'Mobile', items: ['Flutter', 'Dart', 'Offline Sync', 'Secure Storage'] },
   { icon: Wrench, label: 'Tools & DevOps', items: ['Git', 'GitHub', 'VS Code', 'Vercel'] },
 ];

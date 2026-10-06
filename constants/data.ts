@@ -26,6 +26,44 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    name: 'AI Software Engineering Assistant',
+    tag: 'AI · ML · RAG · Local LLM',
+    image: '/projects/ai-software-engineering-assistant.png',
+    description: 'An AI-powered developer debugging assistant that combines Machine Learning, Retrieval-Augmented Generation (RAG), and a locally hosted LLM to analyze software errors and provide context-aware troubleshooting guidance.',
+    fullDescription: 'An AI-powered developer debugging assistant that combines Machine Learning, Retrieval-Augmented Generation (RAG), and a locally hosted LLM to analyze software errors and provide context-aware troubleshooting guidance.',
+    features: [
+      'Error classification into 10 categories using TF-IDF + Logistic Regression with confidence scores',
+      'ChromaDB & all-MiniLM-L6-v2 vector search for technical documentation retrieval',
+      'Ollama + Qwen2.5 0.5B local LLM for private, offline AI response generation',
+      'SQLite persistence for multi-session chat history and conversation logs',
+      'FastAPI backend with React + Vite + TypeScript interactive frontend',
+      'End-to-end ML → RAG → Local LLM workflow verified with 17/17 test suite pass'
+    ],
+    architecture: [
+      'TF-IDF & Logistic Regression Error Classifier',
+      'ChromaDB Vector Store with Sentence Transformers',
+      'Ollama Engine running Qwen2.5 0.5B',
+      'SQLite Conversation Store',
+      'FastAPI REST Service API',
+      'React & Vite TypeScript Interface'
+    ],
+    stack: [
+      'Python',
+      'FastAPI',
+      'React',
+      'Vite',
+      'TypeScript',
+      'TF-IDF',
+      'Logistic Regression',
+      'ChromaDB',
+      'Sentence Transformers',
+      'Ollama',
+      'Qwen2.5 0.5B',
+      'SQLite'
+    ],
+    githubUrl: 'https://github.com/Narasimhudu-panyam/sofware-assistant'
+  },
+  {
     name: 'AI Smart Travel Planner',
     tag: 'AI · Full Stack',
     image: '/projects/ai-smart-travel-planner.png',

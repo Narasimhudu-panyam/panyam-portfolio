@@ -52,7 +52,7 @@ export function Hero() {
             </div>
 
             <div className="mt-14 grid max-w-2xl grid-cols-3 gap-3">
-              <Stat n="04" label="Featured projects" />
+              <Stat n="05" label="Featured projects" />
               <Stat n="9.1" label="MCA CGPA" />
               <Stat n="AI" label="Driven products" />
             </div>

@@ -19,12 +19,65 @@ export interface Project {
   fullDescription?: string;
   features: string[];
   architecture?: string[];
+  challenges?: string[];
+  architectureDiagram?: string;
+  accent?: 'cyan' | 'emerald';
   stack: string[];
   githubUrl: string;
   liveUrl?: string;
 }
 
 export const projects: Project[] = [
+  {
+    name: 'FoodRescue — Food Waste to Donation Matcher',
+    tag: 'Full Stack Development · Social Impact · Geospatial Technology',
+    image: '/projects/food-rescue.png',
+    description: 'A full-stack food rescue platform that connects commercial food businesses with verified community organizations and volunteer dispatchers. It uses geospatial matching, food-safety checks, donation coordination, and real-time pickup tracking to help surplus food reach communities in need.',
+    fullDescription: 'A full-stack food rescue and donation matching platform that bridges the gap between commercial food surplus and local hunger relief organizations. By integrating PostGIS spatial indexing with asynchronous FastAPI endpoints and Leaflet interactive maps, FoodRescue automates radius-bounded donation discovery, enforces food-safety and capacity rules, and coordinates volunteer pickup dispatches with real-time WebSocket communication.',
+    architectureDiagram: 'Next.js Frontend → FastAPI Backend → PostgreSQL/PostGIS Database, with WebSockets for real-time notifications.',
+    features: [
+      'Food donation creation, categorization, and quantity management with real-time expiration monitoring',
+      'Geospatial matching between food donors and eligible recipient organizations using PostGIS ST_DWithin queries',
+      'Organization verification workflow and granular role-based access control (Donors, Recipients, Dispatchers)',
+      'Donation acceptance, capacity reservation, and volunteer pickup/delivery coordination',
+      'Food-safety validation, shelf-life verification, and temperature requirement tracking',
+      'Real-time WebSocket notifications and live status updates across the pickup lifecycle',
+      'Analytics dashboard for donation volume, waste diversion impact, and fulfillment metrics'
+    ],
+    architecture: [
+      'Next.js 16 (App Router) + React 19 + TypeScript + Tailwind CSS Frontend',
+      'FastAPI + Uvicorn Asynchronous REST API & Native WebSocket Server',
+      'PostgreSQL 16 + PostGIS 3.4 Spatial Database (GEOGRAPHY(Point, 4326))',
+      'SQLAlchemy 2.0 (Asyncpg) with Alembic Database Schema Migrations',
+      'JWT Authentication (Access & Refresh Tokens) with Role-Based Access Control (RBAC)',
+      'In-Memory Notification Event Hub for Targeted Broadcasts',
+      'Multi-Stage Docker & Docker Compose Containerization'
+    ],
+    challenges: [
+      'Spatial Database Queries: Executed optimized ST_DWithin and ST_Distance geospatial calculations on GEOGRAPHY(Point, 4326) columns with spatial indexing to calculate radius-bounded matching between donors and recipient organizations without performance bottlenecks.',
+      'Asynchronous Concurrency: Designed a high-throughput async SQLAlchemy 2.0 + asyncpg pipeline within FastAPI to prevent event-loop blocking during simultaneous spatial queries and concurrent client connections.',
+      'Data Validation & Food Safety: Enforced strict Pydantic v2 schemas and client-side Zod validation to ensure non-negotiable food-safety parameters (perishable flags, storage temperatures, expiration windows) are validated before donation broadcast.',
+      'Authorization & Multi-Role Governance: Built fine-grained JWT role-based access control (RBAC) securely separating commercial food donors, verified community non-profits, and volunteer delivery dispatchers.',
+      'Coordinating Donation Workflows: Managed atomic transactional state transitions (Available → Matched → Claimed → Picked Up → Delivered) while broadcasting instant state changes to all parties via WebSockets.'
+    ],
+    stack: [
+      'Next.js',
+      'React',
+      'TypeScript',
+      'Tailwind CSS',
+      'Python',
+      'FastAPI',
+      'SQLAlchemy 2.0',
+      'PostgreSQL',
+      'PostGIS',
+      'WebSockets',
+      'Docker',
+      'Docker Compose'
+    ],
+    githubUrl: 'https://github.com/Narasimhudu-panyam/food-helper',
+    liveUrl: 'https://food-helper-swart.vercel.app/',
+    accent: 'emerald'
+  },
   {
     name: 'AI Software Engineering Assistant',
     tag: 'AI · ML · RAG · Local LLM',

@@ -20,7 +20,7 @@ const education = [
 
 export function Journey() {
   return (
-    <section className="section grid gap-16 lg:grid-cols-2">
+    <section id="journey" className="section grid gap-16 lg:grid-cols-2">
       {/* Experience */}
       <div id="experience">
         <Reveal>

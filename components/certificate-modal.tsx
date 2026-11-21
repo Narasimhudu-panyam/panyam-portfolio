@@ -30,7 +30,7 @@ export function CertificateModal({ cert, onClose }: CertificateModalProps) {
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative z-10 my-6 w-full max-w-4xl overflow-hidden rounded-3xl border border-white/20 bg-slate-900/95 p-5 sm:p-7 shadow-2xl shadow-cyan-950/50 text-slate-100 max-h-[92vh] flex flex-col"
+          className="certificate-modal-panel relative z-10 my-6 w-full max-w-4xl overflow-hidden rounded-3xl border p-5 sm:p-7 shadow-2xl max-h-[92vh] flex flex-col"
         >
           {/* Header */}
           <div className="flex items-start justify-between gap-4 pb-4 border-b border-white/10 shrink-0">

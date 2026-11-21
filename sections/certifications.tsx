@@ -31,13 +31,15 @@ export function Certifications() {
           <Reveal key={cert.id} delay={i * 0.08}>
             <motion.article
               whileHover={{ y: -6 }}
-              className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/15 bg-gradient-to-br from-white/[.08] via-slate-950/60 to-white/[.02] p-6 shadow-2xl shadow-black/25 transition duration-300 hover:border-cyan-300/35 hover:shadow-cyan-950/30"
+              className="cert-card group relative flex flex-col justify-between overflow-hidden rounded-3xl border p-5 shadow transition duration-300 sm:p-6"
             >
               <div>
                 {/* Certificate Preview Image */}
-                <div
+                <button
+                  type="button"
+                  aria-label={`Preview ${cert.title}`}
                   onClick={() => setSelectedCert(cert)}
-                  className="relative aspect-[16/10] w-full cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-slate-950 shadow-inner group-hover:border-cyan-300/30 transition"
+                  className="cert-preview relative block aspect-[16/10] w-full cursor-pointer overflow-hidden rounded-2xl border text-left shadow-inner transition"
                 >
                   <Image
                     src={cert.previewUrl}
@@ -51,7 +53,7 @@ export function Certifications() {
                     <Award size={13} className="text-cyan-300" />
                     {cert.organization}
                   </span>
-                </div>
+                </button>
 
                 {/* Content */}
                 <div className="mt-5">

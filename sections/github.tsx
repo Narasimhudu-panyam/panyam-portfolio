@@ -45,7 +45,7 @@ export function GitHub() {
   ] : [];
 
   return (
-    <section className="section">
+    <section id="github" className="section">
       <Reveal>
         <div className="github-panel overflow-hidden rounded-3xl p-7 sm:p-10">
           <div className="flex flex-col justify-between gap-8 md:flex-row">

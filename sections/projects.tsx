@@ -11,7 +11,7 @@ import { ProjectModal } from '@/components/project-modal';
 export function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   return <section id="projects" className="section scroll-mt-20">
-    <Reveal><p className="eyebrow">03 · Adventure islands</p><div className="flex flex-wrap items-end justify-between gap-5"><h2 className="section-title">Places I&apos;ve <span className="text-[#168DAB]">built.</span></h2><p className="max-w-sm leading-7 text-[#587184]">A selection of product experiments and production-minded systems across web, mobile, and AI.</p></div></Reveal>
+    <Reveal><p className="eyebrow">03 · Project archive</p><div className="flex flex-wrap items-end justify-between gap-5"><h2 className="section-title">Places I&apos;ve <span className="text-[#168DAB]">built.</span></h2><p className="max-w-sm leading-7 text-[#587184]">A selection of product experiments and production-minded systems across web, mobile, and AI.</p></div></Reveal>
     <div className="mt-10 grid gap-6 md:grid-cols-2">{projects.map((project, i) => <Reveal key={project.name} delay={i * .05}><motion.article whileHover={{ y: -5 }} className="island-card group">
       <button type="button" onClick={() => setSelectedProject(project)} className="relative block aspect-[16/8.5] w-full overflow-hidden bg-[#dceef2] text-left" aria-label={`View details for ${project.name}`}>
         <Image src={project.image} alt={`${project.name} project preview`} fill className="object-cover transition duration-700 group-hover:scale-[1.035]" sizes="(max-width: 768px) 100vw, 50vw" />

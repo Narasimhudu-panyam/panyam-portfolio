@@ -26,25 +26,27 @@ export async function GET() {
 
     const profile = await profileRes.json();
     const repos = reposRes.ok ? await reposRes.json() : [];
+    const profileStats = [profile.public_repos, profile.followers, profile.following];
+
+    if (!profileStats.every((value) => typeof value === 'number')) {
+      return NextResponse.json({ profile: null, repos: [], error: true });
+    }
 
     return NextResponse.json({
       profile: {
-        public_repos: typeof profile.public_repos === 'number' ? profile.public_repos : 7,
-        followers: typeof profile.followers === 'number' ? profile.followers : 0,
-        following: typeof profile.following === 'number' ? profile.following : 0,
+        public_repos: profile.public_repos,
+        followers: profile.followers,
+        following: profile.following,
       },
       repos: Array.isArray(repos) ? repos : [],
     });
   } catch (error) {
     console.error('GitHub API error:', error);
-    // Graceful fallback values for profile & repos
+    // Return an unavailable state instead of placeholder profile statistics.
     return NextResponse.json({
-      profile: {
-        public_repos: 7,
-        followers: 0,
-        following: 0,
-      },
+      profile: null,
       repos: [],
+      error: true,
     });
   }
 }

@@ -61,15 +61,15 @@ export function Contact() {
   return (
     <section id="contact" className="section">
       <Reveal>
-        <div className="relative overflow-hidden rounded-3xl border border-cyan-200/20 bg-gradient-to-br from-violet-900/50 via-[#0a1124] to-cyan-950/40 p-7 shadow-[0_30px_100px_rgba(34,211,238,.08)] sm:p-12">
-          <div className="absolute -right-12 -top-20 h-64 w-64 rounded-full bg-cyan-400/20 blur-[80px]" />
+        <div className="contact-panel relative overflow-hidden rounded-3xl border p-7 shadow-[0_20px_65px_rgba(24,50,74,.09)] sm:p-12">
+          <div className="absolute -right-12 -top-20 h-64 w-64 rounded-full bg-[#8BD8FA]/40 blur-[80px]" />
           <p className="eyebrow">07 — Contact</p>
           <div className="relative grid gap-12 lg:grid-cols-[.9fr_1.1fr]">
             <div>
               <h2 className="section-title">
                 Let&apos;s make the
                 <br />
-                <span className="gradient-text">next thing count.</span>
+                <span className="text-[#168DAB]">next thing count.</span>
               </h2>
               <p className="mt-6 max-w-md leading-7 text-slate-300">
                 Have a role, a product idea, or an interesting problem? I&apos;d love to hear about it.
@@ -111,9 +111,9 @@ export function Contact() {
             </div>
 
             <div>
-              <form
+                <form
                 onSubmit={submit}
-                className="grid gap-4 rounded-2xl border border-white/15 bg-slate-950/45 p-5 shadow-xl shadow-black/20 sm:p-6"
+                className="contact-form grid gap-4 rounded-2xl border p-5 shadow-sm sm:p-6"
               >
                 <label className="text-xs font-medium text-slate-300">
                   Name

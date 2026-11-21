@@ -1,84 +1,27 @@
 'use client';
 
-import { Menu, X, Download, Sparkles } from 'lucide-react';
-import { useState } from 'react';
+import { Menu, X, Download, Compass } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { navItems } from '@/constants/data';
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
-
-  return (
-    <header className="fixed inset-x-0 top-4 z-50 mx-auto w-[calc(100%-2rem)] max-w-7xl">
-      <nav className="glass flex h-14 items-center justify-between rounded-2xl px-4 shadow-2xl shadow-violet-950/30">
-        <a href="#home" className="group flex items-center gap-2.5 text-xs sm:text-sm font-semibold truncate max-w-[calc(100%-4rem)] sm:max-w-none">
-          <span className="grid h-8 w-8 shrink-0 place-items-center rounded-xl border border-white/20 bg-gradient-to-br from-violet-500/70 to-cyan-400/60 transition duration-300 group-hover:scale-110 group-hover:rotate-6">
-            <Sparkles size={16} />
-          </span>
-          <span className="bg-gradient-to-r from-violet-300 via-cyan-200 to-blue-300 bg-clip-text text-transparent truncate">
-            Panyam Lakshmi Narasimhudu.dev
-          </span>
-        </a>
-
-        <div className="hidden items-center gap-5 lg:flex">
-          {navItems.map((i) => (
-            <a
-              key={i}
-              className="text-xs text-slate-300 transition hover:text-cyan-200"
-              href={`#${i.toLowerCase()}`}
-            >
-              {i}
-            </a>
-          ))}
-          <a
-            href="/resume.pdf"
-            download="Panyam_Lakshmi_Narasimhudu_Resume.pdf"
-            className="rounded-xl bg-gradient-to-r from-white to-cyan-100 px-3 py-2 text-xs font-semibold text-slate-950 transition hover:scale-105"
-          >
-            <Download className="mr-1 inline" size={13} />
-            Resume
-          </a>
-        </div>
-
-        <button
-          aria-label="Toggle navigation"
-          className="lg:hidden shrink-0"
-          onClick={() => setOpen(!open)}
-        >
-          {open ? <X /> : <Menu />}
-        </button>
-      </nav>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            className="glass mt-2 rounded-2xl p-4 lg:hidden"
-          >
-            {navItems.map((i) => (
-              <a
-                key={i}
-                onClick={() => setOpen(false)}
-                className="block rounded-lg px-3 py-2 text-sm text-slate-200 hover:bg-white/10"
-                href={`#${i.toLowerCase()}`}
-              >
-                {i}
-              </a>
-            ))}
-            <a
-              href="/resume.pdf"
-              download="Panyam_Lakshmi_Narasimhudu_Resume.pdf"
-              onClick={() => setOpen(false)}
-              className="mt-2 block w-full text-center rounded-xl bg-gradient-to-r from-white to-cyan-100 px-3 py-2 text-xs font-semibold text-slate-950"
-            >
-              <Download className="mr-1 inline" size={13} />
-              Download Resume
-            </a>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
-  );
+  const [active, setActive] = useState('home');
+  useEffect(() => {
+    const ids = ['home', ...navItems.map(i => i.toLowerCase())];
+    const nodes = ids.map(id => document.getElementById(id)).filter((node): node is HTMLElement => Boolean(node));
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) setActive(entry.target.id); }), { rootMargin: '-25% 0px -60% 0px' });
+    nodes.forEach(node => observer.observe(node));
+    return () => observer.disconnect();
+  }, []);
+  const links = <>{navItems.map(i => <a key={i} onClick={() => setOpen(false)} aria-current={active === i.toLowerCase() ? 'location' : undefined} className={`nav-link ${active === i.toLowerCase() ? 'nav-link-active' : ''}`} href={`#${i.toLowerCase()}`}>{i}</a>)}<a href="/resume.pdf" download="Panyam_Lakshmi_Narasimhudu_Resume.pdf" className="nav-resume"><Download size={14}/> Resume</a></>;
+  return <header className="fixed inset-x-0 top-3 z-50 mx-auto w-[calc(100%-1.25rem)] max-w-7xl sm:top-4 sm:w-[calc(100%-2rem)]">
+    <nav aria-label="Main navigation" className="nav-shell flex min-h-14 items-center justify-between rounded-2xl px-3.5 sm:px-5">
+      <a href="#home" className="flex min-w-0 items-center gap-2.5 text-sm font-bold text-[#18324A] sm:text-base"><span className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-[#e5f5f9] text-[#168DAB]"><Compass size={18}/></span><span className="truncate">Panyam Narasimhudu</span></a>
+      <div className="hidden items-center gap-1 lg:flex">{links}</div>
+      <button type="button" aria-label={open ? 'Close navigation' : 'Open navigation'} aria-expanded={open} aria-controls="mobile-navigation" className="rounded-lg p-2 text-[#18324A] hover:bg-[#eaf6f8] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#168DAB] lg:hidden" onClick={() => setOpen(!open)}>{open ? <X size={21}/> : <Menu size={21}/>}</button>
+    </nav>
+    <AnimatePresence>{open && <motion.div id="mobile-navigation" initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="nav-shell mt-2 grid gap-1 rounded-2xl p-3 lg:hidden">{links}</motion.div>}</AnimatePresence>
+  </header>;
 }

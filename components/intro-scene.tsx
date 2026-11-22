@@ -34,10 +34,10 @@ export function IntroScene({ onNext }: IntroSceneProps) {
           <span>PANYAM LAKSHMI</span>
           <span>NARASIMHUDU</span>
         </motion.h1>
-        <motion.div className="intro-portrait" initial={reduceMotion ? false : { opacity: 0, y: 30, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ delay: reduceMotion ? 0 : 0.32, duration: 0.85, ease: [0.2, 0.8, 0.2, 1] }}>
-          <Image src="/headshot.jpg" alt="Panyam Lakshmi Narasimhudu" fill priority sizes="(max-width: 640px) 72vw, 420px" className="intro-photo" />
+        <motion.button className="intro-portrait" type="button" aria-label="Enter Home" onClick={onNext} initial={reduceMotion ? false : { opacity: 0, y: 30, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ delay: reduceMotion ? 0 : 0.32, duration: 0.85, ease: [0.2, 0.8, 0.2, 1] }}>
+          <Image src="/headshot.jpg" alt="" fill priority sizes="(max-width: 640px) 84vw, 620px" className="intro-photo" />
           <span className="portrait-edge" aria-hidden="true" />
-        </motion.div>
+        </motion.button>
         <motion.div className="intro-bottomline" initial={reduceMotion ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: reduceMotion ? 0 : 0.75, duration: 0.55 }}>
           <span className="intro-index">PERSONAL PORTFOLIO · 2026</span>
           <button className="intro-next" type="button" onClick={onNext} autoFocus>

@@ -1,49 +1,87 @@
 'use client';
 
 import Image from 'next/image';
-import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowDownRight, Download, Mail } from 'lucide-react';
-
-function Cloud({ className, delay = 0 }: { className: string; delay?: number }) {
-  const reduceMotion = useReducedMotion();
-  return <motion.div aria-hidden="true" className={`cloud ${className}`} animate={reduceMotion ? {} : { x: [0, 28, 0] }} transition={{ duration: 28, delay, repeat: Infinity, ease: 'easeInOut' }} />;
-}
+import { motion } from 'framer-motion';
+import { ArrowDownRight, Download } from 'lucide-react';
 
 export function Hero() {
-  const reduceMotion = useReducedMotion();
   return (
-    <section id="home" className="hero relative isolate min-h-[min(900px,100svh)] overflow-hidden pt-28">
-      <div className="hero-sun" aria-hidden="true" />
-      <Cloud className="cloud-one" />
-      <Cloud className="cloud-two" delay={-10} />
-      <Cloud className="cloud-three" delay={-18} />
-      <div className="hero-island" aria-hidden="true"><span /><i /><b /></div>
-      <div className="section relative z-10 flex min-h-[min(780px,calc(100svh-7rem))] items-center pb-40 lg:pb-44">
-        <div className="grid w-full items-center gap-12 lg:grid-cols-[1.25fr_.75fr]">
-          <motion.div initial={reduceMotion ? false : { opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.75 }}>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#168DAB]/20 bg-white/75 px-4 py-2 text-sm font-semibold text-[#23647a] shadow-sm">
-              <span className="h-2 w-2 rounded-full bg-[#E76F51]" /> An open horizon for thoughtful ideas
+    <section id="home" className="relative isolate min-h-screen overflow-hidden pt-32">
+      <div className="grid-bg absolute inset-0 -z-10" />
+      <motion.div
+        animate={{ x: [0, 50, 0], y: [0, -30, 0] }}
+        transition={{ duration: 12, repeat: Infinity }}
+        className="absolute -left-28 top-24 -z-10 h-96 w-96 rounded-full bg-violet-500/40 blur-[110px]"
+      />
+      <motion.div
+        animate={{ x: [0, -45, 0], y: [0, 30, 0] }}
+        transition={{ duration: 14, repeat: Infinity }}
+        className="absolute right-0 top-40 -z-10 h-[30rem] w-[30rem] rounded-full bg-cyan-400/25 blur-[120px]"
+      />
+
+      <div className="section flex min-h-[calc(100vh-8rem)] items-center">
+        <div className="grid w-full items-center gap-12 lg:grid-cols-[1.35fr_.65fr]">
+          <motion.div initial={{ opacity: 0, y: 25 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-300/35 bg-cyan-300/10 px-3 py-1.5 text-xs font-medium text-cyan-100 shadow-[0_0_30px_rgba(34,211,238,.15)]">
+              <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_12px_#67e8f9]" /> Available for opportunities
             </div>
-            <h1 className="max-w-4xl text-[clamp(2.65rem,7.4vw,6.35rem)] font-extrabold leading-[.98] tracking-[-.055em] text-[#18324A]">
-              Hey, I&apos;m <span className="text-[#168DAB]">Panyam Lakshmi Narasimhudu</span>
+
+            <h1 className="max-w-4xl text-5xl font-semibold leading-[.95] tracking-[-.06em] text-white sm:text-7xl lg:text-[5.7rem]">
+              Building intelligent applications with <span className="gradient-text">modern web technologies &amp; AI.</span>
             </h1>
-            <p className="mt-6 text-lg font-semibold tracking-wide text-[#28566c] sm:text-xl">Full Stack Developer <span className="text-[#E76F51]">•</span> AI Enthusiast <span className="text-[#E76F51]">•</span> Creative Problem Solver</p>
-            <p className="mt-5 max-w-2xl text-base leading-8 text-[#35566a] sm:text-lg">MCA student and developer building modern web applications and AI-powered solutions. I enjoy turning ambitious ideas into useful products with clean architecture, thoughtful interfaces, and practical problem-solving.</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#projects" className="button-primary">Explore My Projects <ArrowDownRight size={17} /></a>
-              <a href="/resume.pdf" download="Panyam_Lakshmi_Narasimhudu_Resume.pdf" className="button-secondary"><Download size={16} /> Download Resume</a>
-              <a href="#contact" className="button-secondary"><Mail size={16} /> Contact Me</a>
+
+            <p className="mt-8 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
+              I&apos;m <strong className="font-medium text-white">Panyam Lakshmi Narasimhudu</strong> &mdash; a <span className="text-cyan-200">Full Stack Developer</span> and MCA student building modern web applications and AI-powered solutions with a focus on clean UI, reliable systems, and practical problem-solving.
+            </p>
+
+            <div className="mt-9 flex flex-wrap gap-3">
+              <a
+                href="/resume.pdf"
+                download="Panyam_Lakshmi_Narasimhudu_Resume.pdf"
+                className="group rounded-xl bg-gradient-to-r from-white to-cyan-100 px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/15 transition duration-300 hover:-translate-y-1 hover:shadow-cyan-400/30"
+              >
+                <Download className="mr-2 inline-block transition group-hover:-translate-y-0.5" size={16} />
+                Download resume
+              </a>
+              <a
+                href="#projects"
+                className="rounded-xl border border-white/20 bg-white/[.08] px-5 py-3 text-sm font-semibold shadow-lg shadow-violet-950/30 transition hover:-translate-y-1 hover:border-cyan-300/40 hover:bg-white/10"
+              >
+                Explore projects <ArrowDownRight className="ml-1 inline-block" size={16} />
+              </a>
             </div>
-            <div className="mt-9 flex flex-wrap gap-x-8 gap-y-3 text-sm font-medium text-[#42677a]"><span>06 featured projects</span><span>MCA · CGPA 9.1</span><span>Web · AI · Mobile</span></div>
+
+            <div className="mt-14 grid max-w-2xl grid-cols-3 gap-3">
+              <Stat n="06" label="Featured projects" />
+              <Stat n="9.1" label="MCA CGPA" />
+              <Stat n="AI" label="Driven products" />
+            </div>
           </motion.div>
-          <motion.div initial={reduceMotion ? false : { opacity: 0, scale: .94, y: 18 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: .8, delay: .12 }} className="relative mx-auto w-full max-w-[390px]">
-            <div className="portrait-frame"><div className="portrait-photo"><Image src="/headshot.jpg" alt="Panyam Lakshmi Narasimhudu" fill priority sizes="(max-width: 640px) 80vw, 360px" className="object-cover" /></div><span className="portrait-stamp">CURIOUS<br />BY NATURE</span><span className="portrait-spark">✳</span></div>
-            <div className="portrait-caption"><span>Currently exploring</span><strong>Full Stack &amp; Applied AI</strong></div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.88 }}
+            animate={{ opacity: 1, scale: 1, y: [0, -10, 0] }}
+            transition={{ opacity: { duration: 0.7 }, scale: { duration: 0.7 }, y: { duration: 5, repeat: Infinity, ease: 'easeInOut' } }}
+            className="relative mx-auto -mt-2 sm:-mt-4 lg:-mt-24"
+          >
+            <div className="absolute -inset-5 rounded-full bg-gradient-to-r from-violet-500 via-cyan-300 to-blue-500 opacity-75 blur-xl" />
+            <div className="relative h-48 w-48 overflow-hidden rounded-full border-2 border-white/50 bg-slate-900 p-1 shadow-[0_0_65px_rgba(34,211,238,.3)] transition duration-500 hover:scale-105 sm:h-60 sm:w-60">
+              <div className="relative h-full w-full overflow-hidden rounded-full">
+                <Image src="/headshot.jpg" alt="Panyam Lakshmi Narasimhudu" fill priority sizes="(max-width: 640px) 192px, 240px" className="object-cover" />
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
-      <div className="ocean" aria-hidden="true"><div className="wave wave-back" /><div className="wave wave-front" /><div className="ocean-line" /></div>
-      <a href="#about" className="absolute bottom-10 left-1/2 z-20 -translate-x-1/2 rounded-full border border-white/75 bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[.18em] text-[#31586c] shadow-sm">Begin the journey</a>
     </section>
+  );
+}
+
+function Stat({ n, label }: { n: string; label: string }) {
+  return (
+    <div className="glass rounded-xl px-3 py-3">
+      <p className="text-2xl font-semibold text-white">{n}</p>
+      <p className="mt-1 text-xs text-slate-400">{label}</p>
+    </div>
   );
 }

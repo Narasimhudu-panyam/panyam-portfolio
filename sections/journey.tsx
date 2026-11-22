@@ -20,7 +20,7 @@ const education = [
 
 export function Journey() {
   return (
-    <section className="section grid gap-16 lg:grid-cols-2">
+    <section id="journey" className="section grid gap-16 lg:grid-cols-2">
       {/* Experience */}
       <div id="experience">
         <Reveal>
@@ -31,9 +31,9 @@ export function Journey() {
           </h2>
         </Reveal>
         <Reveal delay={0.15}>
-          <div className="relative mt-10 border-l border-cyan-300/30 pl-7">
+          <div className="relative mt-10 border-l-2 border-[#168DAB]/30 pl-7">
             <span className="absolute -left-2 top-1 grid h-4 w-4 place-items-center rounded-full bg-cyan-300 ring-8 ring-cyan-300/10" />
-            <article className="glass rounded-2xl border border-white/15 p-6 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/40 hover:shadow-lg hover:shadow-cyan-950/20">
+            <article className="journey-card rounded-2xl border p-6 transition duration-300 hover:-translate-y-1">
               <div className="flex items-center gap-3 text-cyan-200">
                 <span className="rounded-xl bg-violet-500/20 p-2 text-cyan-300">
                   <BriefcaseBusiness size={18} />
@@ -64,7 +64,7 @@ export function Journey() {
         <div className="mt-10 space-y-4">
           {education.map((item, i) => (
             <Reveal key={item.org} delay={i * 0.12}>
-              <article className="relative overflow-hidden rounded-2xl border border-white/15 bg-gradient-to-br from-violet-950/40 via-slate-950/80 to-cyan-950/40 p-6 shadow-xl shadow-violet-950/20 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/40">
+              <article className="journey-card relative overflow-hidden rounded-2xl border p-6 shadow-lg transition duration-300 hover:-translate-y-1">
                 <div className="absolute inset-y-0 left-0 w-1.5 bg-gradient-to-b from-violet-400 to-cyan-300" />
                 <div className="flex gap-4 sm:gap-5">
                   <span className="mt-0.5 shrink-0 rounded-xl border border-cyan-300/30 bg-cyan-400/10 p-2.5 text-cyan-300">
